@@ -16,4 +16,26 @@ public class settings extends AppCompatActivity {
     public void back(View v){
         startActivity(new Intent(settings.this, timer.class));
     }
+
+    public void openAdd(View v){
+        View add = findViewById(R.id.add_settings);
+        View sub = findViewById(R.id.sub_settings);
+
+        sub.setVisibility(View.GONE);
+        if(add.getVisibility() == View.GONE)
+            add.setVisibility(View.VISIBLE);
+        else
+            add.setVisibility(View.GONE);
+    }
+
+    public void openSub(View v){
+        View add = findViewById(R.id.add_settings);
+        View sub = findViewById(R.id.sub_settings);
+
+        add.setVisibility(View.GONE);
+        if(sub.getVisibility() == View.GONE)
+            sub.setVisibility(View.VISIBLE);
+        else
+            sub.setVisibility(View.GONE);
+    }
 }
