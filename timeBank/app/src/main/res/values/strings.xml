@@ -1,4 +1,32 @@
 <resources>
     <string name="app_name">timeBank</string>
+
+    <!-- Timer -->
     <string name="timer_default">1:30</string>
+
+    <!-- Settings -->
+    <!-- Add Menu -->
+    <string name="added_option">Add Time Option</string>
+    <string name="added_title">Time Added Every Day</string>
+    <string name="added_hrs">1</string>
+    <string name="added_mins">1</string>
+    <string name="added_max">Maximum Time</string>
+    <string name="added_max_hrs">1</string>
+    <string name="added_max_mins">1</string>
+
+    <!-- Sub Menu -->
+    <string name="sub_option">Subtract Time Option</string>
+    <string name="sub_initial">Initial Time</string>
+    <string name="sub_initial_hrs">1</string>
+    <string name="sub_initial_mins">1</string>
+    <string name="sub_decay">Decay Time</string>
+    <string name="sub_decay_hrs">1</string>
+    <string name="sub_decay_mins">1</string>
+    <string name="sub_goal">Goal Time</string>
+    <string name="sub_goal_hrs">1</string>
+    <string name="sub_goal_mins">1</string>
+
+    <!-- General -->
+    <string name="hrs">hrs</string>
+    <string name="mins">mins</string>
 </resources>

@@ -6,29 +6,41 @@
     android:layout_height="match_parent"
     tools:context=".settings">
 
-    <RadioGroup
+    <ImageButton
+        android:id="@+id/back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:onClick="back"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <ImageButton
-            android:id="@+id/back_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_weight="1"
-            android:onClick="back"
-            android:scaleType="fitCenter"
-            app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+        android:layout_marginTop="84dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent"
+            android:padding="5dp">
 
             <CheckBox
-                android:id="@+id/checkBox"
+                android:id="@+id/addCheck"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:onClick="turnAddOn" />
 
             <TextView
                 android:id="@+id/addTimeText"
@@ -36,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:onClick="openAdd"
-                android:text="Add Time option"
+                android:text="@string/added_option"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat" />
 
@@ -53,6 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:padding="2dp"
             android:visibility="gone">
 
             <LinearLayout
@@ -65,39 +78,62 @@
                     android:id="@+id/time_added_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="time added every day"
+                    android:text="@string/added_title"
                     android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                     tools:textAlignment="center" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:gravity="center"
                     android:orientation="horizontal">
 
                     <android.support.design.widget.TextInputLayout
-                        android:id="@+id/added_time"
+                        android:id="@+id/added_time_hrs"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="1">
 
                         <android.support.design.widget.TextInputEditText
+                            android:id="@+id/added_time_hrs_edit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="1"
+                            android:inputType="number"
+                            android:text="@string/added_hrs"
                             android:textAppearance="@style/TextAppearance.AppCompat.Large"
                             tools:textAlignment="center" />
                     </android.support.design.widget.TextInputLayout>
 
                     <TextView
-                        android:id="@+id/hrs1"
+                        android:id="@+id/hrs"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
                         android:layout_weight="1"
-                        android:text="hrs"
+                        android:text="@string/hrs"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/added_time_min"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <android.support.design.widget.TextInputEditText
+                            android:id="@+id/added_time_min_edit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:text="@string/added_mins"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                            tools:textAlignment="center" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <TextView
+                        android:id="@+id/mins1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/mins"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
                 </LinearLayout>
 
@@ -113,53 +149,89 @@
                     android:id="@+id/maxTimeTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="maximum time"
+                    android:text="@string/added_max"
                     android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                     tools:textAlignment="center" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:gravity="center"
                     android:orientation="horizontal">
 
                     <android.support.design.widget.TextInputLayout
-                        android:id="@+id/max_time"
+                        android:id="@+id/max_time_hrs"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="1">
 
                         <android.support.design.widget.TextInputEditText
+                            android:id="@+id/max_time_hrs_edit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="1"
+                            android:inputType="number"
+                            android:text="@string/added_max_hrs"
                             android:textAppearance="@style/TextAppearance.AppCompat.Large"
                             tools:textAlignment="center" />
+
                     </android.support.design.widget.TextInputLayout>
 
                     <TextView
                         android:id="@+id/hrs2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
                         android:layout_weight="1"
-                        android:text="hrs"
+                        android:text="@string/hrs"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/max_time_mins"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <android.support.design.widget.TextInputEditText
+                            android:id="@+id/max_time_mins_edit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:text="@string/added_max_mins"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                            tools:textAlignment="center" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <TextView
+                        android:id="@+id/mins2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/mins"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
                 </LinearLayout>
 
             </LinearLayout>
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="setAddTimes"
+                android:text="APPLY CHANGES" />
+
         </LinearLayout>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent"
+            android:elevation="5dp"
+            android:padding="5dp">
 
             <CheckBox
-                android:id="@+id/checkBox2"
+                android:id="@+id/subCheck"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:onClick="turnSubOn" />
 
             <TextView
                 android:id="@+id/textView2"
@@ -167,10 +239,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:onClick="openSub"
-                android:text="Subtract Time Option"
+                android:text="@string/sub_option"
                 android:textAlignment="center"
-                android:textAppearance="@style/TextAppearance.AppCompat"
-                tools:text="Subtract Time Option" />
+                android:textAppearance="@style/TextAppearance.AppCompat" />
 
             <ImageButton
                 android:id="@+id/open_sub"
@@ -198,28 +269,52 @@
                     android:id="@+id/initialTimeTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="initial time"
+                    android:text="@string/sub_initial"
                     android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                     tools:textAlignment="center" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:gravity="center"
                     android:orientation="horizontal">
 
                     <android.support.design.widget.TextInputLayout
-                        android:id="@+id/initial_time"
+                        android:id="@+id/initial_time_hrs"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <android.support.design.widget.TextInputEditText
+                            android:id="@+id/initial_time_hrs_edit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:text="@string/sub_initial_hrs"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                            tools:textAlignment="center" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <TextView
+                        android:id="@+id/hrs5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/hrs"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/initial_time_mins"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1">
 
                         <android.support.design.widget.TextInputEditText
+                            android:id="@+id/initial_time_mins_edit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="1"
+                            android:inputType="number"
+                            android:text="@string/sub_initial_mins"
                             android:textAppearance="@style/TextAppearance.AppCompat.Large"
                             tools:textAlignment="center" />
                     </android.support.design.widget.TextInputLayout>
@@ -228,9 +323,8 @@
                         android:id="@+id/hrs3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
                         android:layout_weight="1"
-                        android:text="hrs"
+                        android:text="@string/mins"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
                 </LinearLayout>
 
@@ -246,28 +340,52 @@
                     android:id="@+id/textView3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="decay time"
+                    android:text="@string/sub_decay"
                     android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                     tools:textAlignment="center" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:gravity="center"
                     android:orientation="horizontal">
 
                     <android.support.design.widget.TextInputLayout
-                        android:id="@+id/decay_time"
+                        android:id="@+id/decay_time_hrs"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <android.support.design.widget.TextInputEditText
+                            android:id="@+id/decay_time_hrs_edit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:text="@string/sub_decay_hrs"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                            tools:textAlignment="center" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/hrs"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/decay_time_mins"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1">
 
                         <android.support.design.widget.TextInputEditText
+                            android:id="@+id/decay_time_mins_edit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="1"
+                            android:inputType="number"
+                            android:text="@string/sub_decay_mins"
                             android:textAppearance="@style/TextAppearance.AppCompat.Large"
                             tools:textAlignment="center" />
                     </android.support.design.widget.TextInputLayout>
@@ -276,9 +394,8 @@
                         android:id="@+id/textView6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
                         android:layout_weight="1"
-                        android:text="hrs"
+                        android:text="@string/mins"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
                 </LinearLayout>
 
@@ -294,28 +411,52 @@
                     android:id="@+id/textView5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="goal time"
+                    android:text="@string/sub_goal"
                     android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                     tools:textAlignment="center" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:gravity="center"
                     android:orientation="horizontal">
 
                     <android.support.design.widget.TextInputLayout
-                        android:id="@+id/goal_time"
+                        android:id="@+id/goal_time_hrs"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <android.support.design.widget.TextInputEditText
+                            android:id="@+id/goal_time_hrs_edit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:text="@string/sub_goal_hrs"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                            tools:textAlignment="center" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/hrs"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/goal_time_mins"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1">
 
                         <android.support.design.widget.TextInputEditText
+                            android:id="@+id/goal_time_mins_edit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="1"
+                            android:inputType="number"
+                            android:text="@string/sub_goal_mins"
                             android:textAppearance="@style/TextAppearance.AppCompat.Large"
                             tools:textAlignment="center" />
                     </android.support.design.widget.TextInputLayout>
@@ -324,24 +465,48 @@
                         android:id="@+id/textView7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
                         android:layout_weight="1"
-                        android:text="hrs"
+                        android:text="@string/mins"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
                 </LinearLayout>
 
             </LinearLayout>
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="setSubTimes"
+                android:text="APPLY CHANGES" />
+
         </LinearLayout>
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="disable ads"
-            tools:layout_editor_absoluteX="148dp"
-            tools:layout_editor_absoluteY="103dp" />
+    </LinearLayout>
 
-    </RadioGroup>
+    <ToggleButton
+        android:id="@+id/secToggle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="secondsToggle"
+        android:text="ToggleButton"
+        android:textOff="Turn Seconds On"
+        android:textOn="Turn Seconds Off"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_weight="1"
+        android:text="disable ads"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
