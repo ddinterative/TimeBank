@@ -13,6 +13,9 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.ToggleButton;
 
+import java.util.Calendar;
+import java.util.Date;
+
 public class settings extends AppCompatActivity {
 
     @Override
@@ -70,6 +73,19 @@ public class settings extends AppCompatActivity {
 
         editor.putString("option","add");
 
+        EditText startViewHr = (EditText)findViewById(R.id.added_time_hrs_edit);
+        EditText startViewMin = (EditText)findViewById(R.id.added_time_min_edit);
+
+        String startHr = startViewHr.getText().toString();
+        String startMin = startViewMin.getText().toString();
+
+        editor.putString("timeHr",startHr);
+        editor.putString("timeMin",startMin);
+
+        int date = Calendar.DATE;
+
+        editor.putInt("Day",date);
+
         editor.apply();
     }
 
@@ -84,6 +100,19 @@ public class settings extends AppCompatActivity {
         SharedPreferences.Editor editor = mSettings.edit();
 
         editor.putString("option","sub");
+
+        EditText startViewHr = (EditText)findViewById(R.id.initial_time_hrs_edit);
+        EditText startViewMin = (EditText)findViewById(R.id.initial_time_mins_edit);
+
+        String startHr = startViewHr.getText().toString();
+        String startMin = startViewMin.getText().toString();
+
+        editor.putString("timeHr",startHr);
+        editor.putString("timeMin",startMin);
+
+        int date = Calendar.DATE;
+
+        editor.putInt("Day",date);
 
         editor.apply();
     }
@@ -130,6 +159,9 @@ public class settings extends AppCompatActivity {
         editor.putString("maxTimeMins",maxTimeMinsVal);
 
         editor.apply();
+
+        View addView = findViewById(R.id.addCheck);
+        turnAddOn(addView);
     }
 
     public void setSubTimes(View v) {
@@ -159,6 +191,9 @@ public class settings extends AppCompatActivity {
         editor.putString("goalTimeMins",goalTimeMinsVal);
 
         editor.apply();
+
+        View subView = findViewById(R.id.subCheck);
+        turnSubOn(subView);
     }
 
     public void getTimes() {
