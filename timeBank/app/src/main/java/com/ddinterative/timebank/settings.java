@@ -15,6 +15,7 @@ import android.widget.ToggleButton;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 public class settings extends AppCompatActivity {
 
@@ -79,10 +80,13 @@ public class settings extends AppCompatActivity {
         String startHr = startViewHr.getText().toString();
         String startMin = startViewMin.getText().toString();
 
-        editor.putString("timeHr",startHr);
-        editor.putString("timeMin",startMin);
+        editor.putInt("timeHr",Integer.parseInt(startHr));
+        editor.putInt("timeMin",Integer.parseInt(startMin));
 
-        int date = Calendar.DATE;
+        editor.putLong("totalMilliseconds",Integer.parseInt(startHr)*60*60*1000 + Integer.parseInt(startMin)*60*1000);
+
+        Calendar localCalendar = Calendar.getInstance(TimeZone.getDefault());
+        int date = localCalendar.get(Calendar.DATE);
 
         editor.putInt("Day",date);
 
@@ -107,10 +111,13 @@ public class settings extends AppCompatActivity {
         String startHr = startViewHr.getText().toString();
         String startMin = startViewMin.getText().toString();
 
-        editor.putString("timeHr",startHr);
-        editor.putString("timeMin",startMin);
+        editor.putInt("timeHr",Integer.parseInt(startHr));
+        editor.putInt("timeMin",Integer.parseInt(startMin));
 
-        int date = Calendar.DATE;
+        editor.putLong("totalMilliseconds",Integer.parseInt(startHr)*60*60*1000 + Integer.parseInt(startMin)*60*1000);
+
+        Calendar localCalendar = Calendar.getInstance(TimeZone.getDefault());
+        int date = localCalendar.get(Calendar.DATE);
 
         editor.putInt("Day",date);
 
@@ -158,6 +165,9 @@ public class settings extends AppCompatActivity {
         editor.putString("maxTimeHrs",maxTimeHrsVal);
         editor.putString("maxTimeMins",maxTimeMinsVal);
 
+        editor.putString("startTimeHrs",addedTimeHrsVal);
+        editor.putString("startTimeMins",addedTimeMinsVal);
+
         editor.apply();
 
         View addView = findViewById(R.id.addCheck);
@@ -189,6 +199,9 @@ public class settings extends AppCompatActivity {
         editor.putString("decayTimeMins",decayTimeMinsVal);
         editor.putString("goalTimeHrs",goalTimeHrsVal);
         editor.putString("goalTimeMins",goalTimeMinsVal);
+
+        editor.putString("startTimeHrs",initialTimeHrsVal);
+        editor.putString("startTimeMins",initialTimeMinsVal);
 
         editor.apply();
 

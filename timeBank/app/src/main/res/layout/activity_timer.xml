@@ -68,6 +68,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:onClick="startTime"
                 app:srcCompat="@android:drawable/ic_media_play" />
 
             <ImageButton
@@ -75,6 +76,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:onClick="stopTimer"
                 app:srcCompat="@android:drawable/ic_media_pause" />
         </LinearLayout>
     </android.support.design.widget.BottomNavigationView>
