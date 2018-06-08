@@ -12,6 +12,7 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import java.sql.Time;
 import java.util.Calendar;
 import java.util.Objects;
 import java.util.TimeZone;
@@ -176,6 +177,7 @@ public class timer extends AppCompatActivity {
 
                 int hrs = Integer.parseInt(addedTimeHrs) * daysPassed + TimeHrs;
                 int mins = Integer.parseInt(addedTimeMins) * daysPassed + TimeMins;
+                int secs = TimeSecs;
 
                 if (hrs > Integer.parseInt(maxTimeHrs)) {
                     hrs = Integer.parseInt(maxTimeHrs);
@@ -192,8 +194,23 @@ public class timer extends AppCompatActivity {
                 } else {
                     timer.setText(hrs + ":" + mins + ":00");
                 }
+
+                if (TimeMins < 9 && TimeSecs < 9) {
+                    timer.setText(hrs + ":0" + mins + ":0" + secs);
+                }
+                else if (TimeMins < 9) {
+                    timer.setText(hrs + ":0" + mins + ":" + secs);
+                }
+                else if (TimeSecs < 9) {
+                    timer.setText(hrs + ":" + mins + ":0" + secs);
+                }
+                else {
+                    timer.setText(hrs + ":" + mins + ":" + secs);
+                }
+
                 hrsT = hrs;
                 minsT = mins;
+                secsT = secs;
 
                 save();
 
@@ -204,6 +221,58 @@ public class timer extends AppCompatActivity {
 
             } else {
 
+                String decayTimeHrs = mSettings.getString("decayTimeHrs", "1");
+                String decayTimeMins = mSettings.getString("decayTimeMins", "1");
+                String goalTimeHrs = mSettings.getString("goalTimeHrs", "1");
+                String goalTimeMins = mSettings.getString("goalTimeMins", "1");
+
+                int hrs = TimeHrs - Integer.parseInt(decayTimeHrs) * daysPassed;
+                int mins = TimeMins - Integer.parseInt(decayTimeMins) * daysPassed;
+                int secs = TimeSecs;
+
+                if(Integer.parseInt(goalTimeHrs) < hrs) {
+                    hrs = Integer.parseInt(goalTimeHrs);
+                }
+
+                if(Integer.parseInt(goalTimeHrs) == hrs && Integer.parseInt(goalTimeMins) < mins ) {
+                    mins = Integer.parseInt(goalTimeMins);
+                }
+
+
+                while(mins < 0){
+                    mins = 60 - mins;
+                    hrs = hrs - 1;
+                }
+
+
+                if (mins < 9) {
+                    timer.setText(hrs + ":0" + mins + ":00");
+                } else {
+                    timer.setText(hrs + ":" + mins + ":00");
+                }
+
+                if (TimeMins < 9 && TimeSecs < 9) {
+                    timer.setText(hrs + ":0" + mins + ":0" + secs);
+                }
+                else if (TimeMins < 9) {
+                    timer.setText(hrs + ":0" + mins + ":" + secs);
+                }
+                else if (TimeSecs < 9) {
+                    timer.setText(hrs + ":" + mins + ":0" + secs);
+                }
+                else {
+                    timer.setText(hrs + ":" + mins + ":" + secs);
+                }
+
+                hrsT = hrs;
+                minsT = mins;
+                secsT = secs;
+
+                save();
+
+                mSettings.edit().putInt("Day",date);
+
+                mSettings.edit().apply();
             }
         }
     }
