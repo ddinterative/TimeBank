@@ -13,6 +13,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.Calendar;
+import java.util.Objects;
 import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
@@ -21,7 +22,7 @@ import static java.lang.Math.toIntExact;
 public class timer extends AppCompatActivity {
     private Boolean pause = false;
     private long milliseconds;
-    private long currentMilliseconds;
+    private long currentMilliseconds = 0;
     private long hrsT;
     private long minsT;
     private long secsT;
@@ -35,18 +36,22 @@ public class timer extends AppCompatActivity {
 
         SharedPreferences mSettings = timer.this.getSharedPreferences("TimeSettings", Context.MODE_PRIVATE);
 
-        ImageButton start_timer=(ImageButton)this.findViewById(R.id.start);
-        ImageButton stop_timer=(ImageButton)this.findViewById(R.id.stop);
+        final ImageButton start_timer=(ImageButton)this.findViewById(R.id.start);
+        final ImageButton stop_timer=(ImageButton)this.findViewById(R.id.stop);
 
         start_timer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 SharedPreferences mSettings = timer.this.getSharedPreferences("TimeSettings", Context.MODE_PRIVATE);
 
+                v.setVisibility(View.GONE);
+                stop_timer.setVisibility(View.VISIBLE);
+
                 Integer hrs = mSettings.getInt("timeHr",1);
                 Integer mins = mSettings.getInt("timeMin",1);
+                Integer secs = mSettings.getInt("timeSec",1);
 
-                currentMilliseconds =  hrs*60*60*1000 + mins*60*1000;
+                currentMilliseconds = hrs * 60 * 60 * 1000 + mins * 60 * 1000+ secs * 1000;
 
                 pause = false;
 
@@ -98,6 +103,7 @@ public class timer extends AppCompatActivity {
 
                     public void pause(long currentMil) {
                         currentMilliseconds = currentMil;
+                        save();
                         this.cancel();
                     }
 
@@ -114,7 +120,8 @@ public class timer extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 pause = true;
-
+                v.setVisibility(View.GONE);
+                start_timer.setVisibility(View.VISIBLE);
             }
         });
 
@@ -128,6 +135,7 @@ public class timer extends AppCompatActivity {
         SharedPreferences mSettings = timer.this.getSharedPreferences("TimeSettings", Context.MODE_PRIVATE);
 
         TextView timer = (TextView)findViewById(R.id.timer);
+        ProgressBar progress = (ProgressBar)findViewById(R.id.progressBar);
 
         Calendar localCalendar = Calendar.getInstance(TimeZone.getDefault());
         int date = localCalendar.get(Calendar.DATE);
@@ -136,17 +144,28 @@ public class timer extends AppCompatActivity {
 
         Integer TimeHrs = mSettings.getInt("timeHr", 1);
         Integer TimeMins = mSettings.getInt("timeMin", 0);
+        Integer TimeSecs = mSettings.getInt("timeSec", 0);
 
         String option = mSettings.getString("option","add");
 
         if (daysPassed == 0){
-            if (TimeMins < 9) {
-                timer.setText(TimeHrs + ":0" + TimeMins + ":00");
+            if (TimeMins < 9 && TimeSecs < 9) {
+                timer.setText(TimeHrs + ":0" + TimeMins + ":0" + TimeSecs);
+            }
+            else if (TimeMins < 9) {
+                timer.setText(TimeHrs + ":0" + TimeMins + ":" + TimeSecs);
+            }
+            else if (TimeSecs < 9) {
+                timer.setText(TimeHrs + ":" + TimeMins + ":0" + TimeSecs);
             }
             else {
-                timer.setText(TimeHrs + ":" + TimeMins + ":00");
+                timer.setText(TimeHrs + ":" + TimeMins + ":" + TimeSecs);
             }
+
             milliseconds = mSettings.getLong("totalMilliseconds",TimeHrs*60*60*1000+TimeMins*60*1000);
+            long current = TimeHrs*60*60*1000 + TimeMins * 60 *1000 + TimeSecs * 1000;
+            long remaining = 100 - current*100/milliseconds;
+            progress.setProgress((int)remaining);
         }
         else {
             if (option.equals("add")) {
@@ -195,6 +214,7 @@ public class timer extends AppCompatActivity {
 
         editor.putInt("timeHr",(int)hrsT);
         editor.putInt("timeMin",(int)minsT);
+        editor.putInt("timeSec",(int)secsT);
 
         editor.apply();
 
