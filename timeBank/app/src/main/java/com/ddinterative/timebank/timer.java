@@ -36,6 +36,7 @@ public class timer extends AppCompatActivity {
         setTimer();
 
         SharedPreferences mSettings = timer.this.getSharedPreferences("TimeSettings", Context.MODE_PRIVATE);
+        final String secsOn = mSettings.getString("sec", "on");
 
         final ImageButton start_timer=(ImageButton)this.findViewById(R.id.start);
         final ImageButton stop_timer=(ImageButton)this.findViewById(R.id.stop);
@@ -74,17 +75,25 @@ public class timer extends AppCompatActivity {
                         mil = mil- minsT*60*1000;
                         secsT = TimeUnit.MILLISECONDS.toSeconds(mil);
 
-                        if (minsT<10 && secsT<10) {
-                            timer.setText(hrsT + ":0" + minsT + ":0" + secsT);
-                        }
-                        else if (minsT<10) {
-                            timer.setText(hrsT + ":0" + minsT + ":" + secsT);
-                        }
-                        else if (secsT<10) {
-                            timer.setText(hrsT + ":" + minsT + ":0" + secsT);
+
+
+                        if(secsOn.equals("off")) {
+                            if (minsT < 10) {
+                                timer.setText(hrsT + ":0" + minsT);
+                            } else {
+                                timer.setText(hrsT + ":" + minsT);
+                            }
                         }
                         else {
-                            timer.setText(hrsT + ":" + minsT + ":" + secsT);
+                            if (minsT < 10 && secsT < 10) {
+                                timer.setText(hrsT + ":0" + minsT + ":0" + secsT);
+                            } else if (minsT < 10) {
+                                timer.setText(hrsT + ":0" + minsT + ":" + secsT);
+                            } else if (secsT < 10) {
+                                timer.setText(hrsT + ":" + minsT + ":0" + secsT);
+                            } else {
+                                timer.setText(hrsT + ":" + minsT + ":" + secsT);
+                            }
                         }
 
                         long remaining = 100 - currentMil*100/milliseconds;
@@ -150,17 +159,26 @@ public class timer extends AppCompatActivity {
         String option = mSettings.getString("option","add");
 
         if (daysPassed == 0){
-            if (TimeMins < 9 && TimeSecs < 9) {
-                timer.setText(TimeHrs + ":0" + TimeMins + ":0" + TimeSecs);
-            }
-            else if (TimeMins < 9) {
-                timer.setText(TimeHrs + ":0" + TimeMins + ":" + TimeSecs);
-            }
-            else if (TimeSecs < 9) {
-                timer.setText(TimeHrs + ":" + TimeMins + ":0" + TimeSecs);
+
+            String secsOn = mSettings.getString("sec", "on");
+
+            if(secsOn.equals("off")) {
+                if (TimeMins < 10) {
+                    timer.setText(TimeHrs + ":0" + TimeMins);
+                } else {
+                    timer.setText(TimeHrs + ":" + TimeMins);
+                }
             }
             else {
-                timer.setText(TimeHrs + ":" + TimeMins + ":" + TimeSecs);
+                if (TimeMins < 10 && TimeSecs < 10) {
+                    timer.setText(TimeHrs + ":0" + TimeMins + ":0" + TimeSecs);
+                } else if (TimeMins < 10) {
+                    timer.setText(TimeHrs + ":0" + TimeMins + ":" + TimeSecs);
+                } else if (TimeSecs < 10) {
+                    timer.setText(TimeHrs + ":" + TimeMins + ":0" + TimeSecs);
+                } else {
+                    timer.setText(TimeHrs + ":" + TimeMins + ":" + TimeSecs);
+                }
             }
 
             milliseconds = mSettings.getLong("totalMilliseconds",TimeHrs*60*60*1000+TimeMins*60*1000);
@@ -189,23 +207,26 @@ public class timer extends AppCompatActivity {
 
                 milliseconds = hrs*60*60*1000+mins*60*1000;
 
-                if (mins < 9) {
-                    timer.setText(hrs + ":0" + mins + ":00");
-                } else {
-                    timer.setText(hrs + ":" + mins + ":00");
-                }
+                String secsOn = mSettings.getString("sec", "on");
 
-                if (TimeMins < 9 && TimeSecs < 9) {
-                    timer.setText(hrs + ":0" + mins + ":0" + secs);
-                }
-                else if (TimeMins < 9) {
-                    timer.setText(hrs + ":0" + mins + ":" + secs);
-                }
-                else if (TimeSecs < 9) {
-                    timer.setText(hrs + ":" + mins + ":0" + secs);
+                if(secsOn.equals("off")) {
+                    if (mins < 10) {
+                        timer.setText(hrs + ":0" + mins);
+                    } else {
+                        timer.setText(hrs + ":" + mins);
+                    }
                 }
                 else {
-                    timer.setText(hrs + ":" + mins + ":" + secs);
+
+                    if (TimeMins < 10 && TimeSecs < 10) {
+                        timer.setText(hrs + ":0" + mins + ":0" + secs);
+                    } else if (TimeMins < 10) {
+                        timer.setText(hrs + ":0" + mins + ":" + secs);
+                    } else if (TimeSecs < 10) {
+                        timer.setText(hrs + ":" + mins + ":0" + secs);
+                    } else {
+                        timer.setText(hrs + ":" + mins + ":" + secs);
+                    }
                 }
 
                 hrsT = hrs;
@@ -244,24 +265,26 @@ public class timer extends AppCompatActivity {
                     hrs = hrs - 1;
                 }
 
+                String secsOn = mSettings.getString("sec", "on");
 
-                if (mins < 9) {
-                    timer.setText(hrs + ":0" + mins + ":00");
-                } else {
-                    timer.setText(hrs + ":" + mins + ":00");
-                }
-
-                if (TimeMins < 9 && TimeSecs < 9) {
-                    timer.setText(hrs + ":0" + mins + ":0" + secs);
-                }
-                else if (TimeMins < 9) {
-                    timer.setText(hrs + ":0" + mins + ":" + secs);
-                }
-                else if (TimeSecs < 9) {
-                    timer.setText(hrs + ":" + mins + ":0" + secs);
+                if(secsOn.equals("off")) {
+                    if (mins < 9) {
+                        timer.setText(hrs + ":0" + mins);
+                    } else {
+                        timer.setText(hrs + ":" + mins);
+                    }
                 }
                 else {
-                    timer.setText(hrs + ":" + mins + ":" + secs);
+
+                    if (TimeMins < 9 && TimeSecs < 9) {
+                        timer.setText(hrs + ":0" + mins + ":0" + secs);
+                    } else if (TimeMins < 9) {
+                        timer.setText(hrs + ":0" + mins + ":" + secs);
+                    } else if (TimeSecs < 9) {
+                        timer.setText(hrs + ":" + mins + ":0" + secs);
+                    } else {
+                        timer.setText(hrs + ":" + mins + ":" + secs);
+                    }
                 }
 
                 hrsT = hrs;
