@@ -20,7 +20,14 @@ import java.util.concurrent.TimeUnit;
 
 import static java.lang.Math.toIntExact;
 
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 public class timer extends AppCompatActivity {
+    private AdView mAdView;
+
     private Boolean pause = false;
     private long milliseconds;
     private long currentMilliseconds = 0;
@@ -32,6 +39,13 @@ public class timer extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timer);
+
+        String APP_ID ="ca-app-pub-7256889184952298~1849200731";
+        MobileAds.initialize(this, APP_ID);
+
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         setTimer();
 

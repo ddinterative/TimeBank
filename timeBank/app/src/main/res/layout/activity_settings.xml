@@ -504,6 +504,7 @@
         android:layout_marginBottom="8dp"
         android:layout_weight="1"
         android:text="disable ads"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
