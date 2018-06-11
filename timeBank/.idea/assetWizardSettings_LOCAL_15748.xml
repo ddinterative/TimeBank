@@ -16,7 +16,6 @@
                             <entry key="launcher">
                               <value>
                                 <PersistentState>
-<<<<<<< HEAD
                                   <option name="children">
                                     <map>
                                       <entry key="foregroundImage">
@@ -35,11 +34,6 @@
                                   <option name="values">
                                     <map>
                                       <entry key="foregroundImage" value="C:\Users\sonic2fire\Documents\launcher.png" />
-=======
-                                  <option name="values">
-                                    <map>
-                                      <entry key="foregroundImage" value="C:\Users\David\AndroidStudioProjects\timeBank\app\src\main\res\drawable\gearpig.png" />
->>>>>>> art
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -67,15 +61,9 @@
                           <map>
                             <entry key="assetSourceType" value="FILE" />
                             <entry key="height" value="64" />
-<<<<<<< HEAD
                             <entry key="outputName" value="ic_settings_icon" />
                             <entry key="overrideSize" value="true" />
                             <entry key="sourceFile" value="C:\Users\sonic2fire\Documents\settings_icon.svg" />
-=======
-                            <entry key="outputName" value="ic_gearpig" />
-                            <entry key="overrideSize" value="true" />
-                            <entry key="sourceFile" value="C:\Users\David\AppData\Local\Temp\settings_icon.svg" />
->>>>>>> art
                             <entry key="width" value="64" />
                           </map>
                         </option>

@@ -50,7 +50,7 @@ public class timer extends AppCompatActivity {
         setTimer();
 
         SharedPreferences mSettings = timer.this.getSharedPreferences("TimeSettings", Context.MODE_PRIVATE);
-        final String secsOn = mSettings.getString("sec", "on");
+        final String secsOn = mSettings.getString("sec", "off");
 
         final ImageButton start_timer=(ImageButton)this.findViewById(R.id.start);
         final ImageButton stop_timer=(ImageButton)this.findViewById(R.id.stop);
@@ -174,7 +174,7 @@ public class timer extends AppCompatActivity {
 
         if (daysPassed == 0){
 
-            String secsOn = mSettings.getString("sec", "on");
+            String secsOn = mSettings.getString("sec", "off");
 
             if(secsOn.equals("off")) {
                 if (TimeMins < 10) {
@@ -221,7 +221,7 @@ public class timer extends AppCompatActivity {
 
                 milliseconds = hrs*60*60*1000+mins*60*1000;
 
-                String secsOn = mSettings.getString("sec", "on");
+                String secsOn = mSettings.getString("sec", "off");
 
                 if(secsOn.equals("off")) {
                     if (mins < 10) {
@@ -279,7 +279,7 @@ public class timer extends AppCompatActivity {
                     hrs = hrs - 1;
                 }
 
-                String secsOn = mSettings.getString("sec", "on");
+                String secsOn = mSettings.getString("sec", "off");
 
                 if(secsOn.equals("off")) {
                     if (mins < 9) {

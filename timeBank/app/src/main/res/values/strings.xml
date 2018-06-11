@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Time Pig</string>
+    <string name="app_name">timePig</string>
 
     <!-- Timer -->
     <string name="timer_default">1:30</string>
