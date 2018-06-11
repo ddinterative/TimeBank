@@ -15,7 +15,7 @@
         android:layout_marginTop="8dp"
         android:layout_weight="1"
 
-        android:backgroundTint="@color/colorAccent2"
+        android:backgroundTint="@color/colorAccent"
         android:onClick="back"
         android:scaleType="fitCenter"
         android:tint="@color/colorPrimaryDark"

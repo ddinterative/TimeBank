@@ -70,11 +70,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-<<<<<<< HEAD
-=======
                 android:backgroundTint="@color/colorAccent2"
-                android:onClick="startTime"
->>>>>>> art
                 app:srcCompat="@android:drawable/ic_media_play" />
 
             <ImageButton
@@ -82,11 +78,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-<<<<<<< HEAD
-=======
                 android:backgroundTint="@color/colorAccent2"
-                android:onClick="stopTimer"
->>>>>>> art
                 android:visibility="gone"
                 app:srcCompat="@android:drawable/ic_media_pause" />
         </LinearLayout>
