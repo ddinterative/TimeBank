@@ -14,8 +14,11 @@
         android:layout_marginEnd="8dp"
         android:layout_marginTop="8dp"
         android:layout_weight="1"
+
+        android:backgroundTint="@color/colorAccent2"
         android:onClick="back"
         android:scaleType="fitCenter"
+        android:tint="@color/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
@@ -40,6 +43,7 @@
                 android:id="@+id/addCheck"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:buttonTint="@color/colorPrimaryDark"
                 android:onClick="turnAddOn" />
 
             <TextView
@@ -56,7 +60,9 @@
                 android:id="@+id/open_add"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorAccent2"
                 android:onClick="openAdd"
+                android:tint="@color/colorPrimary"
                 app:srcCompat="@android:drawable/arrow_down_float" />
         </TableRow>
 
@@ -216,6 +222,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:backgroundTint="@color/colorAccent2"
                 android:onClick="setAddTimes"
                 android:text="APPLY CHANGES" />
 
@@ -231,6 +238,7 @@
                 android:id="@+id/subCheck"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:buttonTint="@color/colorPrimaryDark"
                 android:onClick="turnSubOn" />
 
             <TextView
@@ -247,8 +255,11 @@
                 android:id="@+id/open_sub"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorAccent2"
                 android:onClick="openSub"
+                android:tint="@color/colorPrimary"
                 app:srcCompat="@android:drawable/arrow_down_float" />
+
         </TableRow>
 
         <LinearLayout
@@ -477,6 +488,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:backgroundTint="@color/colorAccent2"
                 android:onClick="setSubTimes"
                 android:text="APPLY CHANGES" />
 
@@ -488,6 +500,7 @@
         android:id="@+id/secToggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorAccent2"
         android:onClick="secondsToggle"
         android:text="ToggleButton"
         android:textOff="Turn Seconds On"
@@ -503,6 +516,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_weight="1"
+        android:backgroundTint="@color/colorAccent2"
         android:text="disable ads"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
